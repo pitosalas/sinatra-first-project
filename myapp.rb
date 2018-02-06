@@ -1,22 +1,22 @@
 require 'pry-byebug'
 require 'sinatra'
 require 'sinatra/activerecord'
-require_relative 'models/model.rb'
+require_relative 'models/country.rb'
 
 get '/' do
 	erb :index
 end
 
 post '/submit' do
-  @model = Model.new(params[:model])
-  if @model.save
-    redirect '/models'
+  @country = Country.new(params[:country])
+  if @country.save
+    redirect '/country'
   else
     'Sorry, there was an error!'
   end
 end
 
-get '/models' do
-	@models = Model.all
-	erb :models
+get '/country' do
+	@country = Country.all
+	erb :countries
 end
